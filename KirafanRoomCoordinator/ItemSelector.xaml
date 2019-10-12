@@ -1,0 +1,39 @@
+﻿<Window x:Class="Fyed.Kirafan.UI.ItemSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fyed.Kirafan.UI"
+        mc:Ignorable="d"
+        Title="Item Selector" Height="500" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" x:Name="itemsListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Selected">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=IsSelected}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Count">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Path=Count}" Width="50" IsEnabled="{Binding Path=IsSelected}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Item.Name}" Header="Item" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Row="1" Click="CloseWindow">OK</Button>
+    </Grid>
+</Window>

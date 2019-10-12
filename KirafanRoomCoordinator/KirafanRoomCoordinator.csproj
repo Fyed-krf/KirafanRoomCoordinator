@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Fyed.Kirafan.UI</RootNamespace>
+    <AssemblyName>KirafanRoomCoordinator</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KirafanRoomMaster\KirafanRoomMaster.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="items.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

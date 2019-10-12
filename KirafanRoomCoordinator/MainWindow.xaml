@@ -1,0 +1,39 @@
+﻿<Window x:Class="Fyed.Kirafan.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fyed.Kirafan.UI"
+        mc:Ignorable="d"
+        Title="Room Coordinator" Height="920" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="60" />
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="setItemsButton" Click="SetItems">アイテム設定</Button>
+        <Button Grid.Row="0" Grid.Column="1" x:Name="startStopButton" Click="StartStop">開始</Button>
+        <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="optionsPanel">
+            <CheckBox x:Name="shuffleItemsCheckBox" Margin="5,5,5,5" IsChecked="True">開始前にアイテムシャッフル</CheckBox>
+            <CheckBox x:Name="avoidAPDplicationCheckBox" IsChecked="True" Margin="5,5,5,5">アクションポイント重複を禁止</CheckBox>
+            <CheckBox x:Name="avoidDeadAPCheckBox" IsChecked="True" Margin="5,5,5,5">アクションポイントを塞がない</CheckBox>
+            <CheckBox x:Name="checkReachabilityCheckBox" IsChecked="True" Margin="5,5,5,5">全空きマスを到達可能に</CheckBox>
+        </WrapPanel>
+        <ScrollViewer Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Canvas x:Name="roomCanvas" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" />
+        </ScrollViewer>
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="coordinatingLabel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="36" FontWeight="Normal" Visibility="Hidden" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="検索中...">
+            <Label.Background>
+                <SolidColorBrush Opacity="1" Color="#7FFFFFFF"/>
+            </Label.Background>
+        </Label>
+        <Button Grid.Row="3" Grid.Column="0" x:Name="saveImageButton" IsEnabled="False" Click="SaveImage">ルーム画像保存</Button>
+        <Button Grid.Row="3" Grid.Column="1" x:Name="findNextButton" IsEnabled="False" Click="FindNext">次を検索</Button>
+    </Grid>
+</Window>
