@@ -1,5 +1,17 @@
 # KirafanRoomCoordinator
 
+## スクリーンショット
+
+[実際に動かしている動画](https://youtu.be/8ajVUYvxpao)
+
+![screenshot1](readme_content/screen1.png)
+
+![screenshot2](readme_content/screen2.png)
+
+![screenshot3](readme_content/screen3.png)
+
+![screenshot4](readme_content/screen4.png)
+
 ## 使用方法
 
 ### 必要環境
