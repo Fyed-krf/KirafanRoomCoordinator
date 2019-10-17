@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,13 +28,15 @@ namespace Fyed.Kirafan {
         public Point[] FreeFloors { get; private set; }
         public int?[,] FloorSummary { get; private set; }
 
+        private static Room none = new Room(0, 0);
+
         /// <summary>
         /// 幅と高さが0のルームを取得する
         /// </summary>
         /// <value>幅と高さが0のルーム</value>
         public static Room None {
             get {
-                return new Room(0, 0);
+                return none;
             }
         }
 
@@ -84,44 +87,32 @@ namespace Fyed.Kirafan {
         public bool TryAddItem(ItemDisposition newDisposition, out Room addedRoom) {
             var addPoint = newDisposition.Location;
             var newItem = newDisposition.Item;
-            
-            var canAdd = checkAddItem(addPoint, newItem);
-            if (canAdd == true) {
-                var newWidth = Width;
-                
-                var newHeight = Height;
 
-                var newDispositions = new ItemDisposition[Dispositions.Length + 1];
-                Dispositions.CopyTo(newDispositions, 0);
-                newDispositions[newDispositions.Length-1] = newDisposition;
+            var newFreeFloorList = new List<Point>(FreeFloors);
+            var occupationPoints = newItem.Occupation.ToRoomCoordination(addPoint);
 
-                var occupationPoints = newItem.Occupation
-                    .ToRoomCoordination(addPoint)
-                    .ToArray();
-                var newFreeFloors = FreeFloors
-                    .Except(occupationPoints)
-                    .ToArray();
-                
-                var newFloorSummary = (int?[,])FloorSummary.Clone();
-                foreach (var p in occupationPoints) {
-                    newFloorSummary[p.X, p.Y] = newItem.ID;
+            foreach (var p in occupationPoints) {
+                if (!newFreeFloorList.Remove(p)) {
+                    addedRoom = none;
+                    return false;
                 }
-
-                addedRoom = new Room(newWidth, newHeight, newDispositions, newFreeFloors, newFloorSummary);
-                return true;
             }
-            else {
-                addedRoom = Room.None;
-                return false;
+            var newFreeFloors = newFreeFloorList.ToArray();
+
+            var newWidth = Width;
+            var newHeight = Height;
+
+            var newDispositions = new ItemDisposition[Dispositions.Length + 1];
+            Dispositions.CopyTo(newDispositions, 0);
+            newDispositions[newDispositions.Length - 1] = newDisposition;
+
+            var newFloorSummary = (int?[,])FloorSummary.Clone();
+            foreach (var p in occupationPoints) {
+                newFloorSummary[p.X, p.Y] = newItem.ID;
             }
-            
-        }
 
-
-        private bool checkAddItem(Point addPoint, RoomItem newItem) {
-            return newItem.Occupation
-                .ToRoomCoordination(addPoint)
-                .All(p => FreeFloors.Contains(p));
+            addedRoom = new Room(newWidth, newHeight, newDispositions, newFreeFloors, newFloorSummary);
+            return true;
         }
 
         public override string ToString() {
