@@ -312,6 +312,17 @@ namespace Fyed.Kirafan.UI {
                         line.StrokeThickness = 1;
                         Canvas.SetZIndex(line, 3);
                         roomCanvas.Children.Add(line);
+
+                        var anchor = new Ellipse();
+                        var anchorRadius = 5;
+                        anchor.Width = anchorRadius * 2;
+                        anchor.Height = anchorRadius * 2;
+                        anchor.Fill = new SolidColorBrush(Colors.Purple);
+                        Canvas.SetLeft(anchor, line.X2 - anchorRadius);
+                        Canvas.SetTop(anchor, line.Y2 - anchorRadius);
+                        Canvas.SetZIndex(anchor, 3);
+                        roomCanvas.Children.Add(anchor);
+                        
                     }
                 }
             }
