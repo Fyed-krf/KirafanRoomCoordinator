@@ -65,7 +65,7 @@ namespace Fyed.Kirafan {
                                         var newRoomsCount = 0;
 
                                         for (var y = room.Height; y >= -1; y--) {
-                                            for (var x = room.Height; x >= -1; x--) {
+                                            for (var x = room.Width; x >= -1; x--) {
                                                 var p = new Point(x, y);
 
                                                 var disposition = new ItemDisposition(p, item);
