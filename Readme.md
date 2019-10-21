@@ -20,7 +20,7 @@
 
 ### 基本手順
 
-1. [.Net Core 3.0](https://dotnet.microsoft.com/download)をダウンロードし、インストール(実行だけならSDK／ランタイムどちらでもよい)
+1. [.Net Core 3.0](https://dotnet.microsoft.com/download)をダウンロードし、インストール。実行だけならSDK／ランタイムどちらでもよい。ランタイムの場合は「.NET Core Runtime」と「.NET Core Desktop Runtime」の両方を入れる
 2. [KirafanRoomCoordinator](https://github.com/Fyed-krf/KirafanRoomCoodinator/releases/download/1.0/KirafanRoomCoordinator.zip)をダウンロードし、KirafanRoomCoordinator.exeを実行
 3. アイテム設定ボタンをクリックするとアイテム設定ウインドウが開くので、ルームに設置したいアイテムを選択
 4. 開始ボタンをクリックするとアイテム配置検索が開始される
